@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm ảnh vào pdf</title>
+    <script src="./scripts/jquery-3.7.0.min.js"></script>
+    <script src="./scripts/pdf.js"></script>
+    <script src="./scripts/pdf.worker.js"></script>
+    <script src="./scripts/script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body>
+<div class="top-menu-wrapper">
+    <div class="top-menu-left-wrapper">
+        <div class="top-menu-left-button-wrapper">
+            <div class="top-menu-button-with-text" typed="default" title="Thu nhỏ thêm 10%"
+                 id="top-menu-button-zoom-in">
+                <i class="fa fa-compress" aria-hidden="true"></i>
+                <span>Thu nhỏ</span>
+            </div>
+            <input id="top-menu-input-zoom" class="top-menu-input-page" type="number"
+                   min="1" value="1.5" title="Nhập kích thước cần thu phóng" style="margin: 0 5px"/>
+            <div class="top-menu-button-with-text" typed="default" title="Phóng to thêm 10%"
+                 id="top-menu-button-zoom-out">
+                <i class="fa fa-expand" aria-hidden="true" ></i>
+                <span>Phóng to</span>
+            </div>
+            <div class="top-menu-button-with-text" typed="default" title="Trở lại kích thước mặc định"
+                 id="top-menu-button-zoom-reset" style="margin: 0 5px">
+                <i class="fa fa-refresh" aria-hidden="true" ></i>
+            </div>
+        </div>
+    </div>
+    <div class="top-menu-center-wrapper">
+        <div class="top-menu-center-button-wrapper">
+            <div class="top-menu-button-with-text" typed="default" title="Trở về trang đầu"
+                 id="top-menu-button-first-page">
+                <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+            </div>
+            <div class="top-menu-button-with-text" typed="default" title="Lùi lại 1 trang"
+                 id="top-menu-button-previous-page">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+            </div>
+            <input id="top-menu-input-page" class="top-menu-input-page" type="number"
+                   min="1" value="1" style="margin-left: 5px" title="Nhập số của trang cần ký"/>
+            <span style="font-size: 21px; color: var(--color-blue); margin: 5px 2px 5px 8px">/</span>
+            <input id="top-menu-page-nums-text"
+                   class="top-menu-input-page top-menu-input-page-disabled"
+                   type="number" min="1" value="1" style="margin-left: 5px; margin-right: 5px"
+                   title="Tổng số trang của mẫu in"/>
+            <div class="top-menu-button-with-text" typed="default" title="Đi tới 1 trang"
+                 id="top-menu-button-next-page">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </div>
+            <div class="top-menu-button-with-text" typed="default" title="Đi đến trang cuối"
+                 id="top-menu-button-last-page">
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+    <div class="top-menu-right-wrapper">
+        <div class="top-menu-right-button-wrapper">
+            <div class="top-menu-button-with-text" typed="default"
+                 id="top-menu-button-sign-list">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <span>Chữ ký</span>
+            </div>
+            <div id="top-menu-button-sign-list-component">
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <canvas id="the-canvas"></canvas>
+</div>
+</body>
+</html>
