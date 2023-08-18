@@ -15,33 +15,31 @@
 <div class="top-menu-wrapper">
     <div class="top-menu-left-wrapper">
         <div class="top-menu-left-button-wrapper">
-            <div class="top-menu-button-with-text" typed="default" title="Thu nhỏ thêm 10%"
+            <div class="top-menu-button-with-text" typed="orange" title="Thu nhỏ thêm 10%"
                  id="top-menu-button-zoom-in">
-                <i class="fa fa-compress" aria-hidden="true"></i>
+                <i class="fa fa-search-minus" aria-hidden="true"></i>
                 <span>Thu nhỏ</span>
             </div>
-            <input id="top-menu-input-zoom" class="top-menu-input-page" type="number"
-                   min="1" value="1.5" title="Nhập kích thước cần thu phóng" style="margin: 0 5px"/>
-            <div class="top-menu-button-with-text" typed="default" title="Phóng to thêm 10%"
+            <div class="top-menu-button-with-text" typed="orange" title="Phóng to thêm 10%"
                  id="top-menu-button-zoom-out">
-                <i class="fa fa-expand" aria-hidden="true" ></i>
+                <i class="fa fa-search-plus" aria-hidden="true" ></i>
                 <span>Phóng to</span>
             </div>
-            <div class="top-menu-button-with-text" typed="default" title="Trở lại kích thước mặc định"
+            <div class="top-menu-button-with-text" typed="orange" title="Trở lại kích thước mặc định"
                  id="top-menu-button-zoom-reset" style="margin: 0 5px">
                 <i class="fa fa-refresh" aria-hidden="true" ></i>
+                <span>Trở lại</span>
             </div>
-        </div>
-    </div>
-    <div class="top-menu-center-wrapper">
-        <div class="top-menu-center-button-wrapper">
-            <div class="top-menu-button-with-text" typed="default" title="Trở về trang đầu"
+            <div class="separator"></div>
+            <div class="top-menu-button-with-text" typed="purple" title="Trở về trang đầu"
                  id="top-menu-button-first-page">
                 <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                <span>Trang đầu</span>
             </div>
-            <div class="top-menu-button-with-text" typed="default" title="Lùi lại 1 trang"
+            <div class="top-menu-button-with-text" typed="purple" title="Lùi lại 1 trang"
                  id="top-menu-button-previous-page">
                 <i class="fa fa-angle-left" aria-hidden="true"></i>
+                <span>Trang trước</span>
             </div>
             <input id="top-menu-input-page" class="top-menu-input-page" type="number"
                    min="1" value="1" style="margin-left: 5px" title="Nhập số của trang cần ký"/>
@@ -50,27 +48,29 @@
                    class="top-menu-input-page top-menu-input-page-disabled"
                    type="number" min="1" value="1" style="margin-left: 5px; margin-right: 5px"
                    title="Tổng số trang của mẫu in"/>
-            <div class="top-menu-button-with-text" typed="default" title="Đi tới 1 trang"
+            <div class="top-menu-button-with-text" typed="purple" title="Đi tới 1 trang"
                  id="top-menu-button-next-page">
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
+                <span>Trang sau</span>
             </div>
-            <div class="top-menu-button-with-text" typed="default" title="Đi đến trang cuối"
+            <div class="top-menu-button-with-text" typed="purple" title="Đi đến trang cuối"
                  id="top-menu-button-last-page">
                 <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                <span>Trang cuối</span>
+            </div>
+            <div class="separator"></div>
+            <div class="top-menu-button-with-text" typed="blue" title="Đi đến trang cuối"
+                 id="top-menu-button-upload-image">
+                <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                <span>Upload ảnh</span>
             </div>
         </div>
     </div>
-    <div class="top-menu-right-wrapper">
-        <div class="top-menu-right-button-wrapper">
-            <div class="top-menu-button-with-text" typed="default"
-                 id="top-menu-button-sign-list">
-                <i class="fa fa-pencil" aria-hidden="true"></i>
-                <span>Chữ ký</span>
-            </div>
-            <div id="top-menu-button-sign-list-component">
-            </div>
-        </div>
-    </div>
+<!--    <div class="top-menu-center-wrapper">-->
+<!--        <div class="top-menu-center-button-wrapper">-->
+<!--            -->
+<!--        </div>-->
+<!--    </div>-->
 </div>
 <div>
     <canvas id="the-canvas"></canvas>

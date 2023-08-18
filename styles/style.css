@@ -40,15 +40,23 @@ body {
     align-items: center;
 }
 .top-menu-left-wrapper {
-    width: 30%;
+    width: 90%;
     height: 100%;
     display: flex;
     justify-content: center;
 }
 
 .top-menu-center-wrapper {
-    width: 40%;
+    width: 60%;
     height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.separator {
+    height: 35px;
+    margin: 5px;
+    border-left: solid 1px rgb(229, 229, 229);
 }
 
 .top-menu-right-wrapper {
@@ -58,9 +66,9 @@ body {
 
 .top-menu-center-button-wrapper {
     display: flex;
-    margin: 9px auto;
     width: auto;
     justify-content: center;
+    align-items: center;
 }
 
 .top-menu-center-button-wrapper > div {
@@ -102,13 +110,24 @@ body {
 
 .top-menu-button-with-text > i {
     font-size: 15px;
-    color: var(--color-button-text);
+
     line-height: 27px;
     margin: auto;
 }
+.top-menu-button-with-text[typed="orange"] > i {
+    color: rgb(167, 48, 57);
+}
+.top-menu-button-with-text[typed="purple"] > i {
+    color: rgb(143, 73, 177);
+}
+.top-menu-button-with-text[typed="blue"] > i {
+    color: rgb(48, 171, 232);
+}
+
 .top-menu-button-with-text > span {
     margin-left: 5px;
     font-size: 15px;
+    font-family: "Helvetica", serif;
 }
 
 .top-menu-input-page {
@@ -116,10 +135,10 @@ body {
     color: var(--color-blue);
     border: none;
     outline: none;
-    width: 50px;
-    height: 35px;
+    width: 35px;
+    height: 24px;
     border-radius: 5px;
-    font-size: 17px;
+    font-size: 14px;
     font-family: monospace;
     text-align: center;
     padding: 0 2px;
