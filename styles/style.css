@@ -18,9 +18,16 @@
     --color-hover-transition-1s: all 1s ease;
     --color-hover-transition-05s: all 0.5s ease;
 }
+
+@font-face {
+    font-family: svnSegoe;
+    src: url("../resources/SVN-Segoe UI.ttf");
+}
+
 body {
-    min-width: 1500px;
-    min-height: 1500px;
+    min-width: 2000px;
+    min-height: 2000px;
+    overflow: scroll;
 }
 .top-menu-wrapper {
     position: fixed;
@@ -40,7 +47,7 @@ body {
     align-items: center;
 }
 .top-menu-left-wrapper {
-    width: 90%;
+    width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -110,12 +117,14 @@ body {
 
 .top-menu-button-with-text > i {
     font-size: 15px;
-
     line-height: 27px;
     margin: auto;
 }
-.top-menu-button-with-text[typed="orange"] > i {
+.top-menu-button-with-text[typed="red"] > i {
     color: rgb(167, 48, 57);
+}
+.top-menu-button-with-text[typed="orange"] > i {
+    color: rgb(194, 168, 90);
 }
 .top-menu-button-with-text[typed="purple"] > i {
     color: rgb(143, 73, 177);
@@ -127,7 +136,8 @@ body {
 .top-menu-button-with-text > span {
     margin-left: 5px;
     font-size: 15px;
-    font-family: "Helvetica", serif;
+    /*font-family: "Helvetica", serif;*/
+    font-family: svnSegoe, sans-serif;
 }
 
 .top-menu-input-page {
