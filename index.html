@@ -21,15 +21,16 @@
                 <span>Hướng dẫn</span>
             </div>
             <div class="separator"></div>
-            <div class="top-menu-button-with-text" typed="red" title="Đi đến trang cuối"
+            <div class="top-menu-button-with-text" typed="red" title="Chọn tập tin pdf"
                  id="top-menu-button-upload-pdf">
-                <i class="fa fa-telegram" aria-hidden="true"></i>
-                <span>Upload PDF</span>
-            </div>
-            <div class="top-menu-button-with-text" typed="orange" title="Đi đến trang cuối"
-                 id="top-menu-button-upload-image">
                 <i class="fa fa-cloud-upload" aria-hidden="true"></i>
-                <span>Upload ảnh</span>
+                <span>Chọn PDF</span>
+            </div>
+            <input type="file" id="choose-pdf" accept="application/pdf" style="display: none" />
+            <div class="top-menu-button-with-text" typed="green" title="Đi đến trang cuối"
+                 id="top-menu-button-upload-image">
+                <i class="fa fa-image" aria-hidden="true"></i>
+                <span>Chọn ảnh</span>
             </div>
             <div class="separator"></div>
             <div class="top-menu-button-with-text" typed="purple" title="Trở về trang đầu"
@@ -43,12 +44,12 @@
                 <span>Trang trước</span>
             </div>
             <input id="top-menu-input-page" class="top-menu-input-page" type="number"
-                   min="1" value="1" style="margin-left: 5px" title="Nhập số của trang cần ký"/>
+                   min="1" value="1" style="margin-left: 5px" title="Nhập số của trang cần thêm ảnh"/>
             <span style="font-size: 21px; color: var(--color-blue); margin: 5px 2px 5px 8px">/</span>
-            <input id="top-menu-page-nums-text"
+            <input id="top-menu-page-nums-total"
                    class="top-menu-input-page top-menu-input-page-disabled"
                    type="number" min="1" value="1" style="margin-left: 5px; margin-right: 5px"
-                   title="Tổng số trang của mẫu in"/>
+                   title="Tổng số trang của file pdf"/>
             <div class="top-menu-button-with-text" typed="purple" title="Đi tới 1 trang"
                  id="top-menu-button-next-page">
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -67,24 +68,27 @@
             </div>
             <div class="top-menu-button-with-text" typed="red" title="Phóng to thêm 10%"
                  id="top-menu-button-zoom-out">
-                <i class="fa fa-search-plus" aria-hidden="true" ></i>
+                <i class="fa fa-search-plus" aria-hidden="true"></i>
                 <span>Phóng to</span>
             </div>
-            <div class="top-menu-button-with-text" typed="red" title="Trở lại kích thước mặc định"
+            <div class="separator"></div>
+            <div class="top-menu-button-with-text" typed="purple" title="Trở lại kích thước mặc định"
                  id="top-menu-button-zoom-reset" style="margin: 0 5px">
-                <i class="fa fa-refresh" aria-hidden="true" ></i>
-                <span>Ban đầu</span>
+                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                <span>Chia sẻ</span>
             </div>
         </div>
     </div>
-<!--    <div class="top-menu-center-wrapper">-->
-<!--        <div class="top-menu-center-button-wrapper">-->
-<!--            -->
-<!--        </div>-->
-<!--    </div>-->
 </div>
-<div>
-    <canvas id="the-canvas"></canvas>
+<div class="l2kd-plugin-left-side-bar-button-wrapper">
+    <div class="l2kd-plugin-left-side-bar-float-button" title="Nhấn để xem danh sách chữ ký đã thêm vào khung ký"
+         id="l2kd-plugin-left-side-bar-float-button">
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+    </div>
+</div>
+<div id="l2kd-plugin-pdf" class="l2kd-plugin-pdf-wrapper">
+    <div id="l2kd-plugin-pdf-viewer" class="l2kd-plugin-pdf-viewer">
+    </div>
 </div>
 </body>
 </html>
