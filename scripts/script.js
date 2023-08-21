@@ -2,12 +2,8 @@ var url = 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/examples/le
 
 
 $(function () {
-    let l2kdPDFDPI; // Current user dpi
-    let l2kdPDFData; // Current pdf loaded
-    let l2kdPDFEnableScroll = true;
-
+    let l2kdPDFData = null; // Current pdf loaded
     let pagePositionArray = [];
-
     const l2kdPDFDefaultConfigs = {
         scale: 1, // default
         totalPage: 1,
@@ -17,14 +13,6 @@ $(function () {
         currentSignImageBase64Data: null
     }
     let l2kdPDFConfigs = {...l2kdPDFDefaultConfigs};
-    let singnatureElement = null;
-    let imageDataAdd = null;
-    let signatureAdded = [];
-    let signatureInCanvas = [];
-    let signatureAddedFiltered = [];
-    let kyBenhNhan = 0; // 0: Ký smartca    1: Ký bệnh nhân
-    let l2kdPDFPdfData = null;
-    let l2kdPDFlistChuKy = [];
 
     // Loaded via <script> tag, create shortcut to access PDF.js exports.
     var PDFJS = window['pdfjs-dist/build/pdf'];
@@ -39,6 +27,20 @@ $(function () {
         const file = event.target.files[0];
         console.log(file);
         loadFileToPdf(file);
+    });
+
+    $("#top-menu-button-upload-image").click(function () {
+        if (l2kdPDFData !== null) {
+            $("#choose-image").click();
+        } else {
+            alert("Chưa chọn tập tin pdf");
+            $("#choose-pdf").click();
+        }
+    });
+
+    $("#choose-image").change(function (event) {
+        const file = event.target.files[0];
+        console.log(file);
     });
 
     function initPdfInfo() {
@@ -66,7 +68,8 @@ $(function () {
             l2kdPDFCanvasElement.width = pdfViewport.width;
 
             l2kdPDFViewerElement.css("width", pdfViewport.width);
-            l2kdPDFViewerElement.css("box-shadow", "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset");
+            // l2kdPDFViewerElement.css("box-shadow", "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset");
+            l2kdPDFViewerElement.css("box-shadow", "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px");
             l2kdPDFViewerElement.addClass("l2kd-plugin-pdf-viewer");
 
             var l2kdPDFRenderContext = {
@@ -76,6 +79,8 @@ $(function () {
             const l2kdPDFRenderTask = page.render(l2kdPDFRenderContext);
             l2kdPDFRenderTask.promise.then(async function () {
                 console.log("page " + pageNumber + " rendered");
+                $("#top-menu-input-page").val(pageNumber);
+                $("#l2kd-empty-pdf").css("display",  "none");
             });
         });
     }
@@ -84,18 +89,10 @@ $(function () {
         const loadingTask = PDFJS.getDocument(file);
         await loadingTask.promise.then(function (data) {
             l2kdPDFData = data;
-            // smartcaV2PDF = data;
             l2kdPDFConfigs.totalPage = data.numPages;
             l2kdPDFConfigs.currentPage = 1;
-            // const smartcaV2Element = $('#smartcav2-plugin');
-            // smartcaV2Element.css("display", "block");
-            //
             initPdfInfo();
-            renderPage(2);
-
-            // renderPdfL2KDPlugin(data).then(function () {
-            //     console.log('loaded');
-            // });
+            renderPage(l2kdPDFConfigs.currentPage);
         });
     }
 
@@ -145,7 +142,43 @@ $(function () {
     }
 
     $("#top-menu-button-first-page").click(function () {
-        console.log(l2kdPDFData);
         renderPage(1);
-    })
+        l2kdPDFConfigs.currentPage = 1;
+    });
+    $("#top-menu-button-previous-page").click(function () {
+        const currentPage = l2kdPDFConfigs.currentPage;
+        if (currentPage > 1) {
+            renderPage(currentPage - 1);
+            l2kdPDFConfigs.currentPage = currentPage - 1;
+        }
+    });
+    $("#top-menu-button-next-page").click(function () {
+        const currentPage = l2kdPDFConfigs.currentPage;
+        const totalPage = l2kdPDFConfigs.totalPage;
+        if (currentPage < totalPage) {
+            renderPage(currentPage + 1);
+            l2kdPDFConfigs.currentPage = currentPage + 1;
+        }
+    });
+    $("#top-menu-button-last-page").click(function () {
+        const totalPage = l2kdPDFConfigs.totalPage;
+        renderPage(totalPage);
+        l2kdPDFConfigs.currentPage = totalPage;
+    });
+    $("#top-menu-button-zoom-in").click(function () {
+        const scale = l2kdPDFConfigs.scale;
+        const currentPage = l2kdPDFConfigs.currentPage;
+        if (scale > 0.5) {
+            l2kdPDFConfigs.scale = Number((scale - 0.1).toFixed(2));
+            renderPage(currentPage);
+        }
+    });
+    $("#top-menu-button-zoom-out").click(function () {
+        const scale = l2kdPDFConfigs.scale;
+        const currentPage = l2kdPDFConfigs.currentPage;
+        if (scale < 2) {
+            l2kdPDFConfigs.scale = Number((scale + 0.1).toFixed(2));
+            renderPage(currentPage);
+        }
+    });
 });

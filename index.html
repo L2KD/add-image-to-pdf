@@ -6,6 +6,7 @@
     <script src="./scripts/jquery-3.7.0.min.js"></script>
     <script src="./scripts/pdf.js"></script>
     <script src="./scripts/pdf.worker.js"></script>
+    <script src="./scripts/qrcode.min.js"></script>
     <script src="./scripts/script.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./styles/style.css">
@@ -27,11 +28,12 @@
                 <span>Chọn PDF</span>
             </div>
             <input type="file" id="choose-pdf" accept="application/pdf" style="display: none" />
-            <div class="top-menu-button-with-text" typed="green" title="Đi đến trang cuối"
+            <div class="top-menu-button-with-text" typed="green" title="Chọn ảnh"
                  id="top-menu-button-upload-image">
                 <i class="fa fa-image" aria-hidden="true"></i>
                 <span>Chọn ảnh</span>
             </div>
+            <input type="file" id="choose-image" accept="image/png, image/gif, image/jpeg" style="display: none" />
             <div class="separator"></div>
             <div class="top-menu-button-with-text" typed="purple" title="Trở về trang đầu"
                  id="top-menu-button-first-page">
@@ -84,6 +86,17 @@
     <div class="l2kd-plugin-left-side-bar-float-button" title="Nhấn để xem danh sách chữ ký đã thêm vào khung ký"
          id="l2kd-plugin-left-side-bar-float-button">
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
+    </div>
+</div>
+<div id="l2kd-empty-pdf" class="l2kd-empty-pdf-wrapper">
+    <div class="l2kd-empty-pdf-wrapper-image-wrapper">
+        <img src="resources/balloon.svg" width="20%" />
+    </div>
+
+    <div class="l2kd-empty-pdf-text-wrapper">
+        <b>Thật tuyệt! Hôm nay bạn không có file pdf nào cần xử lý</b>
+        <br/>
+        <span>Hãy tận hưởng một ngày tốt lành vì không có công việc để làm</span>
     </div>
 </div>
 <div id="l2kd-plugin-pdf" class="l2kd-plugin-pdf-wrapper">
