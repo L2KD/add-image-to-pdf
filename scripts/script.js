@@ -49,40 +49,42 @@ $(function () {
     }
 
     function renderPage(pageNumber) {
-        const l2kdPDFPdfElement = $("#l2kd-plugin-pdf");
-        l2kdPDFPdfElement.children().remove(); // empty element before load pages
-        l2kdPDFPdfElement.append('<div id="l2kd-plugin-pdf-viewer-' + pageNumber + '"></div>');
-        l2kdPDFData.getPage(pageNumber).then(function (page) {
-            const viewport = page.getViewport({scale: l2kdPDFConfigs.scale});
-            const defaultViewport = page.getViewport(1);
+        if (l2kdPDFData !== null) {
+            const l2kdPDFPdfElement = $("#l2kd-plugin-pdf");
+            l2kdPDFPdfElement.children().remove(); // empty element before load pages
+            l2kdPDFPdfElement.append('<div id="l2kd-plugin-pdf-viewer-' + pageNumber + '"></div>');
+            l2kdPDFData.getPage(pageNumber).then(function (page) {
+                const viewport = page.getViewport({scale: l2kdPDFConfigs.scale});
+                const defaultViewport = page.getViewport(1);
 
-            // const pdfViewport = page.getViewport(1 / 72 * l2kdPDFDPI);
-            const pdfViewport = viewport;
-            const l2kdPDFCanvasId = 'l2kd-plugin-canvas-' + pageNumber;
-            const l2kdPDFViewerElement = $("#l2kd-plugin-pdf-viewer-" + pageNumber);
-            l2kdPDFViewerElement.append('<canvas id="' + l2kdPDFCanvasId + '" class="l2kd-plugin-pdf-viewport"/>');
+                // const pdfViewport = page.getViewport(1 / 72 * l2kdPDFDPI);
+                const pdfViewport = viewport;
+                const l2kdPDFCanvasId = 'l2kd-plugin-canvas-' + pageNumber;
+                const l2kdPDFViewerElement = $("#l2kd-plugin-pdf-viewer-" + pageNumber);
+                l2kdPDFViewerElement.append('<canvas id="' + l2kdPDFCanvasId + '" class="l2kd-plugin-pdf-viewport"/>');
 
-            const l2kdPDFCanvasElement = document.getElementById(l2kdPDFCanvasId);
-            const l2kdPDFContext = l2kdPDFCanvasElement.getContext('2d');
-            l2kdPDFCanvasElement.height = pdfViewport.height;
-            l2kdPDFCanvasElement.width = pdfViewport.width;
+                const l2kdPDFCanvasElement = document.getElementById(l2kdPDFCanvasId);
+                const l2kdPDFContext = l2kdPDFCanvasElement.getContext('2d');
+                l2kdPDFCanvasElement.height = pdfViewport.height;
+                l2kdPDFCanvasElement.width = pdfViewport.width;
 
-            l2kdPDFViewerElement.css("width", pdfViewport.width);
-            // l2kdPDFViewerElement.css("box-shadow", "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset");
-            l2kdPDFViewerElement.css("box-shadow", "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px");
-            l2kdPDFViewerElement.addClass("l2kd-plugin-pdf-viewer");
+                l2kdPDFViewerElement.css("width", pdfViewport.width);
+                // l2kdPDFViewerElement.css("box-shadow", "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset");
+                l2kdPDFViewerElement.css("box-shadow", "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px");
+                l2kdPDFViewerElement.addClass("l2kd-plugin-pdf-viewer");
 
-            var l2kdPDFRenderContext = {
-                canvasContext: l2kdPDFContext,
-                viewport: pdfViewport
-            };
-            const l2kdPDFRenderTask = page.render(l2kdPDFRenderContext);
-            l2kdPDFRenderTask.promise.then(async function () {
-                console.log("page " + pageNumber + " rendered");
-                $("#top-menu-input-page").val(pageNumber);
-                $("#l2kd-empty-pdf").css("display",  "none");
+                var l2kdPDFRenderContext = {
+                    canvasContext: l2kdPDFContext,
+                    viewport: pdfViewport
+                };
+                const l2kdPDFRenderTask = page.render(l2kdPDFRenderContext);
+                l2kdPDFRenderTask.promise.then(async function () {
+                    console.log("page " + pageNumber + " rendered");
+                    $("#top-menu-input-page").val(pageNumber);
+                    $("#l2kd-empty-pdf").css("display",  "none");
+                });
             });
-        });
+        }
     }
 
     async function loadPdf(file) {
